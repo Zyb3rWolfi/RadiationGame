@@ -20,10 +20,13 @@ public class Interaction : MonoBehaviour
     private bool isInteracting = false;
     private Canvas currentObjectCanvas;
     
+    [SerializeField] private Collectable currentCollectable;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interactionCanvas.alpha = 0f; // Hide interaction UI at start
+
     }
 
     // Update is called once per frame
@@ -50,6 +53,7 @@ public class Interaction : MonoBehaviour
                     if (group) group.alpha = Mathf.Lerp(group.alpha, 1, Time.deltaTime * textFadeSpeed);
                     currentObjectCanvas.transform.LookAt(transform.position);
                     currentObjectCanvas.transform.Rotate(0, 0, 0);
+                    currentCollectable = hit.collider.GetComponent<Collectable>();
                 }
 
                 if (Input.GetKey(KeyCode.E))
@@ -97,5 +101,6 @@ public class Interaction : MonoBehaviour
     {
         // Implement what happens when interaction is complete (e.g., open door, pick up item)
         Debug.Log("Interaction Complete!");
+        currentCollectable.onCollected();
     }
 }

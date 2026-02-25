@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6054771985799574227}
   - component: {fileID: 2453198719880709063}
   - component: {fileID: 1725631819423663032}
-  - component: {fileID: 5167799057229592086}
+  - component: {fileID: 3968493914893734874}
   m_Layer: 0
   m_Name: Interactable Object
   m_TagString: Interactable
@@ -110,7 +110,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5167799057229592086
+--- !u!114 &3968493914893734874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,13 +119,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4040703307936609676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f96171facd904d444aaa25866626d754, type: 3}
+  m_Script: {fileID: 11500000, guid: 04347b6409961eb4aa9bed5f9d395bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillCircle: {fileID: 0}
-  interactionCanvas: {fileID: 0}
-  interactionTime: 2
-  rayDistance: 3
+  playerInventory: {fileID: 0}
+  item: {fileID: 0}
 --- !u!1 &5103545010162410052
 GameObject:
   m_ObjectHideFlags: 0

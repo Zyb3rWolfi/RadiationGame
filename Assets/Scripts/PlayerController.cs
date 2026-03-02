@@ -6,6 +6,8 @@ public class FirstPersonController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform cameraTransform; // Drag your Virtual Camera here
+
+    [SerializeField] private GameObject flashLight;
     private Rigidbody rb;
 
     [Header("Movement Settings")]
@@ -107,5 +109,15 @@ public class FirstPersonController : MonoBehaviour
         newVelocity.y = rb.linearVelocity.y;
 
         rb.linearVelocity = newVelocity;
+    }
+
+    public void ToggleFlashLight(InputAction.CallbackContext context)
+    {
+        print(context.control.name);
+        if (context.control.name == "T" ||  context.control.name == "t")
+        {
+            print("Toggle Flash Light");
+            flashLight.SetActive(!flashLight.activeSelf);
+        }
     }
 }

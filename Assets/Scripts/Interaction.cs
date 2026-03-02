@@ -19,13 +19,14 @@ public class Interaction : MonoBehaviour
     private float timer = 0f;
     private bool isInteracting = false;
     private Canvas currentObjectCanvas;
-    
+    private Inventory inventory;
     [SerializeField] private Collectable currentCollectable;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         interactionCanvas.alpha = 0f; // Hide interaction UI at start
+        inventory = FindObjectOfType<Inventory>();
 
     }
 
@@ -101,6 +102,24 @@ public class Interaction : MonoBehaviour
     {
         // Implement what happens when interaction is complete (e.g., open door, pick up item)
         Debug.Log("Interaction Complete!");
-        currentCollectable.onCollected();
+
+        if (currentCollectable != null)
+        {
+            currentCollectable.onCollected();
+            inventory.UpdateInventorySlots();
+        }
+        
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
+        {
+            DoorInteract door = hit.collider.GetComponent<DoorInteract>();
+            if (door != null)
+            {
+                // Get the item the player has currently highlighted
+                Item selected = inventory.GetSelectedItem();
+                
+                door.onInteract(selected);
+            }
+        }
     }
 }

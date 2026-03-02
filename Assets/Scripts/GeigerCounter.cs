@@ -30,14 +30,12 @@ public class GeigerCounter : MonoBehaviour
     void Update()
     {
         float intensity = GetRadiationIntensity();
-        print("Current radiation intensity: " + intensity);
         if (intensity > 0)
         {
             float currentDelay = Mathf.Lerp(maxClickInterval, minClickInterval, intensity);
             
             if (Time.time >= nextClickTime)
             {
-                print("Radiation detected with intensity: " + intensity);
                 clickGen.PlayClick(intensity);
                 nextClickTime = Time.time + currentDelay;
                 int radiationAmount = Mathf.CeilToInt(intensity * 10); // Scale intensity to a radiation amount
@@ -54,7 +52,6 @@ public class GeigerCounter : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            print ("Detected object: " + hit.name);
             if (hit.CompareTag("RadiationSource"))
             {
                 float distance = Vector3.Distance(transform.position, hit.transform.position);
